@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+   "http://struts.apache.org/dtds/struts-2.5.dtd">
+   
+<struts>
+	<package name="productManagementApplication" extends="struts-default">
+		<action name="login" class="com.products.action.LoginAction">
+			<!-- type="redirect" is a way of mapping a result tag to another action in the xml -->
+			<result name="success" type="redirect">welcome</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="welcome" class="com.products.action.WelcomeAction">
+			<result name="success">/welcome.jsp</result>			
+		</action>
+		<action name="addProduct" class="com.products.action.AddProductAction">
+			<result name="success" type="redirect">welcome</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="updateProduct" class="com.products.action.UpdateProductAction">
+			<result name="success">/updateProduct.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<action name="update" class="com.products.action.UpdateAction">
+			<result name="success" type="redirect">welcome</result>
+			<result name="error">/error.jsp</result>
+		</action> 
+	</package>
+</struts>

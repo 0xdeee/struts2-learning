@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+   "http://struts.apache.org/dtds/struts-2.5.dtd">
+   <struts>
+	   <package name="registration" extends="struts-default">
+			<action name="registrationAction" class="com.struts2.registration.RegistrationAction">
+				<result name="success">/Welcome.jsp</result>
+				<result name="input">/Registration.jsp</result>
+			</action>	 
+			<action name="formLoadAction" method="intializeFormFields" class="com.struts2.registration.RegistrationAction">
+				<result name="input">/Registration.jsp</result>
+			</action>  
+	   </package>
+   </struts>
