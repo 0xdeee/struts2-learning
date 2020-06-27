@@ -24,6 +24,10 @@
 		<action name="update" class="com.products.action.UpdateAction">
 			<result name="success" type="redirect">welcome</result>
 			<result name="error">/error.jsp</result>
+		</action>
+		<action name="deleteProduct" class="com.products.action.DeleteAction">
+			<result name="success" type="redirect">welcome</result>
+			<result name="error">/error.jsp</result>
 		</action> 
 	</package>
 </struts>

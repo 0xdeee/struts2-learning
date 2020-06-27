@@ -25,9 +25,8 @@ public class ProductManagementDAO {
 
 		List<Product> productList = new ArrayList<>();
 
-		try {
+		try (Connection connection = DataBaseUtil.getConnection()) {
 
-			Connection connection = DataBaseUtil.getConnection();
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM product");
 
@@ -36,7 +35,6 @@ public class ProductManagementDAO {
 						resultSet.getString("prod_category"), resultSet.getInt("prod_price")));
 
 			}
-			DataBaseUtil.closeConnection(connection);
 
 		} catch (SQLException e) {
 
@@ -52,9 +50,8 @@ public class ProductManagementDAO {
 
 		Product product = null;
 
-		try {
+		try (Connection connection = DataBaseUtil.getConnection()) {
 
-			Connection connection = DataBaseUtil.getConnection();
 			PreparedStatement prepStatement = connection.prepareStatement("SELECT * FROM product WHERE prod_id = ?");
 			prepStatement.setString(1, productId);
 			ResultSet resultSet = prepStatement.executeQuery();
@@ -62,8 +59,6 @@ public class ProductManagementDAO {
 				product = new Product(productId, resultSet.getString("prod_name"), resultSet.getString("prod_category"),
 						resultSet.getInt("prod_price"));
 			}
-			DataBaseUtil.closeConnection(connection);
-
 		} catch (SQLException e) {
 
 			System.out.println("Error while getting product by productId");
@@ -78,9 +73,8 @@ public class ProductManagementDAO {
 	public static int addProduct(Product product) {
 
 		int status = 0;
-
-		Connection connection = DataBaseUtil.getConnection();
-		try {
+		// modified to use try with resources
+		try (Connection connection = DataBaseUtil.getConnection()) {
 
 			PreparedStatement prepStatement = connection.prepareStatement("INSERT INTO product VALUES(?, ?, ?, ?) ");
 			prepStatement.setString(1, product.getProductId());
@@ -88,7 +82,6 @@ public class ProductManagementDAO {
 			prepStatement.setString(3, product.getProductCategory());
 			prepStatement.setInt(4, product.getProductPrice());
 			status = prepStatement.executeUpdate();
-			DataBaseUtil.closeConnection(connection);
 
 		} catch (SQLException e) {
 
@@ -102,9 +95,8 @@ public class ProductManagementDAO {
 	public static int updateProduct(Product product) {
 
 		int status = 0;
-		try {
-		
-			Connection connection = DataBaseUtil.getConnection();
+		// modified to use try with resources
+		try (Connection connection = DataBaseUtil.getConnection()) {
 			PreparedStatement prepStatement = connection.prepareStatement(
 					"UPDATE product SET prod_name = ?, prod_category = ?, prod_price = ? WHERE prod_id = ?");
 			prepStatement.setString(1, product.getProductName());
@@ -112,7 +104,6 @@ public class ProductManagementDAO {
 			prepStatement.setInt(3, product.getProductPrice());
 			prepStatement.setString(4, product.getProductId());
 			status = prepStatement.executeUpdate();
-			DataBaseUtil.closeConnection(connection);
 
 		} catch (SQLException e) {
 
@@ -121,6 +112,24 @@ public class ProductManagementDAO {
 
 		}
 		
+		return status;
+	}
+
+	public static int deleteProduct(String productId) {
+		int status = 0;
+
+		// modified to use try with resources
+		try (Connection connection = DataBaseUtil.getConnection()) {
+			PreparedStatement prepStatement = connection.prepareStatement("DELETE FROM product WHERE prod_id =?");
+			prepStatement.setString(1, productId);
+			status = prepStatement.executeUpdate();
+
+		} catch (SQLException e) {
+
+			System.out.println("Exception occured while deleting a product ");
+			e.printStackTrace();
+		}
+
 		return status;
 	}
 }
