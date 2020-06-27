@@ -1,46 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
-<!DOCTYPE html>
+<%@ taglib prefix="s" uri="/struts-tags" %> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Successful Registration</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Welcome</title>
 </head>
 <body>
-<h1>Registration Success!!</h1>
-<hr>
-
-<s:label value="First name"/>
-<h4><s:property value="firstName"/></h4>
-
-<s:label value="Last name"/>
-<h4><s:property value="lastName"/></h4>
-
-<s:label value="Gender"/>
-<h4><s:property value="gender"/></h4>
-
-<s:label value="Age"/>
-<h4><s:property value="age"/></h4>
-
-<s:label value="Email"/>
-<h4><s:property value="email"/></h4>
-
-<s:label value="Address"/>
-<h4><s:property value="address"/></h4>
-
-<s:label value="Favourite Color"/>
-<h4><s:property value="selectedColor"/></h4>
-
-<s:label value="Hobbies"/>
-<h4><s:property value="hobby"/></h4>
-
-<s:if test="%{subscription == true}">
-	<div>You are a Subscriber</div>
-</s:if>
-<s:else>
-	<div>You are not a subscriber</div>
-</s:else>
-
+<h2>Welcome</h2>
+	<s:label value="First Name:" />
+	<s:property value="firstName"/><br/>
+	
+	<s:label  value="Last Name:"/>
+	<s:property value="lastName"/><br/>
+	
+	<s:label  value="Gender:"/>
+	<s:property value="gender"/><br/>
+	
+	<s:label  value="Age:"/>
+	<s:property value="age"/><br/>
+	
+	<s:label  value="Email:"/>
+	<s:property value="email"/>
 </body>
 </html>

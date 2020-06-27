@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+ "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+
+<!-- validator xml for a specific action must have the same name as the action 
+class of that action and must be present in the same package of that action class -->
+<validators>
+	<validator type="requiredstring">
+		<param name="fieldName">firstName</param>
+		<message key="error.firstName.required" />
+	</validator>
+	<validator type="requiredstring">
+		<param name="fieldName">lastName</param>
+		<message key="error.lastName.required" />
+	</validator>
+	<validator type="required">
+		<param name="fieldName">gender</param>
+		<message key="error.gender.required" />
+	</validator>
+	<validator type="required">
+		<param name="fieldName">age</param>
+		<message key="error.age.required" />
+	</validator>
+	<validator type="int">
+		<param name="fieldName">age</param>
+		<param name="min">18</param>
+		<message key="error.age.range" />
+	</validator>
+	<!-- if we are doing more than one type of validation for a same field we can  use this 
+	alternative approach  -->
+	<field name="email">
+		<field-validator type="requiredstring">
+			<message key="error.email.required" />
+		</field-validator>
+		<field-validator type="email">
+			<message key="error.email.valid" />
+		</field-validator>
+		<!-- user defined validator -->
+		<field-validator type="domainNameValidator">
+			<!-- instead of hardcodig the domain name in DomainNameValidator.java we are sending it from here -->
+			<param name="domainName">future.com</param>
+			<message key="error.email.validDomain" />
+		</field-validator>
+	</field>
+</validators>

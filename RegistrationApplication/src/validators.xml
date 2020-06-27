@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+    "-//Apache Struts//XWork Validator Config 1.0//EN"
+    "http://struts.apache.org/dtds/xwork-validator-config-1.0.dtd">
+   <!-- Need this validators.xml file to register our user defined validators
+   once we have declared it here, we can use it on {actionClass}-validator.xml file -->
+    <validators>
+    	<validator name="domainNameValidator" class="validators.DomainNameValidator"></validator>
+    </validators>
