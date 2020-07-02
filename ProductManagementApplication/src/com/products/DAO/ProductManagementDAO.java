@@ -21,18 +21,54 @@ import com.products.model.Product;
  */
 public class ProductManagementDAO {
 
-	public static List<Product> getAllProduct() {
+	public static List<Product> getAllProduct(String productName, String productCategory, String createdDate) {
 
 		List<Product> productList = new ArrayList<>();
+		int count = 0;
+		String whereClause = "";
+
+		if ((productName == null || productName.equals("")) && (productCategory == null || productCategory.equals(""))
+				&& (createdDate == null || createdDate.equals(""))) {
+			whereClause = "";
+		} else {
+			whereClause += " WHERE ";
+		}
+
+		if (productName != null && !productName.equals("")) {
+			count++;
+			if (count > 1) {
+				whereClause += " AND ";
+			}
+			whereClause += "prod_name = " + "'" + productName + "'";
+		}
+
+		if (productCategory != null && !productCategory.equals("") ) {
+			count++;
+			if (count > 1) {
+				whereClause += " AND ";
+			}
+			whereClause += "prod_category = " + "'" + productCategory + "'";
+		}
+
+		if (createdDate != null && !createdDate.equals("")) {
+			System.out.println("*******" + createdDate + "***********");
+			count++;
+			if (count > 1) {
+				whereClause += " AND ";
+			}
+			whereClause += "created_date = '" + createdDate + "'";
+		}
 
 		try (Connection connection = DataBaseUtil.getConnection()) {
 
 			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery("SELECT * FROM product");
+			System.out.println("SELECT * FROM product" + whereClause);
+			ResultSet resultSet = statement.executeQuery("SELECT * FROM product" + whereClause);
 
 			while (resultSet.next()) {
 				productList.add(new Product(resultSet.getString("prod_id"), resultSet.getString("prod_name"),
-						resultSet.getString("prod_category"), resultSet.getInt("prod_price")));
+						resultSet.getString("prod_category"), resultSet.getInt("prod_price"),
+						resultSet.getString("created_date")));
 
 			}
 
@@ -57,7 +93,7 @@ public class ProductManagementDAO {
 			ResultSet resultSet = prepStatement.executeQuery();
 			while (resultSet.next()) {
 				product = new Product(productId, resultSet.getString("prod_name"), resultSet.getString("prod_category"),
-						resultSet.getInt("prod_price"));
+						resultSet.getInt("prod_price"), resultSet.getString("created_date"));
 			}
 		} catch (SQLException e) {
 
@@ -76,11 +112,12 @@ public class ProductManagementDAO {
 		// modified to use try with resources
 		try (Connection connection = DataBaseUtil.getConnection()) {
 
-			PreparedStatement prepStatement = connection.prepareStatement("INSERT INTO product VALUES(?, ?, ?, ?) ");
+			PreparedStatement prepStatement = connection.prepareStatement("INSERT INTO product VALUES(?, ?, ?, ?, ?) ");
 			prepStatement.setString(1, product.getProductId());
 			prepStatement.setString(2, product.getProductName());
 			prepStatement.setString(3, product.getProductCategory());
 			prepStatement.setInt(4, product.getProductPrice());
+			prepStatement.setString(5, product.getCreatedDate());
 			status = prepStatement.executeUpdate();
 
 		} catch (SQLException e) {

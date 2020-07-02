@@ -69,8 +69,10 @@ public class UpdateAction extends ActionSupport {
 
 	@Override
 	public String execute() {
-
-		Product product = new Product(productId, productName, productCategory, productPrice);
+		// we are passing created date param as null because we dont want others to
+		// alter the date a product entry is created & we are not going to include it in
+		// the udpdateProduct.jsp too
+		Product product = new Product(productId, productName, productCategory, productPrice, null);
 		int status = ProductManagementDAO.updateProduct(product);
 		if (status == 1) {
 			return SUCCESS;

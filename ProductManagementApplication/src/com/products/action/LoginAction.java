@@ -3,6 +3,8 @@
  */
 package com.products.action;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.products.DAO.LoginDAO;
 import com.products.model.LoginInfo;
@@ -47,8 +49,15 @@ public class LoginAction extends ActionSupport {
 	@Override
 	public String execute() {
 		String statusCode = "";
-
 		boolean isValidUser = LoginDAO.isValidUser(new LoginInfo(userName, password));
+		// Implementing user session using ServletActionContext so that while visiting
+		// each page we can check if this set "loggedInUser" attribute is present, if
+		// not we can trigger logout Action automatically.
+		// untill the logged in user voluntarily logs out this attribute will be set in
+		// current user session and after logout some one tried to acces the pages
+		// directly bypassing login this attribute will not be set so we can invalidate
+		// their session & logout
+		ServletActionContext.getRequest().getSession().setAttribute("loggedInUser", userName);
 		if (isValidUser) {
 			statusCode = SUCCESS;
 		} else {

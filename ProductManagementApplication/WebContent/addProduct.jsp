@@ -10,7 +10,9 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+	<!-- Adding Top Nav Bar -->
+	<%@ include file="header.jsp" %>
+	
 	<div align="center">
 		<h3>Add New Product</h3>
 	</div>

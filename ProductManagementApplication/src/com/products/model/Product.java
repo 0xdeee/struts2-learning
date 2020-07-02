@@ -11,16 +11,19 @@ public class Product {
 	private String productName;
 	private String productCategory;
 	private Integer productPrice;
+	private String createdDate;
 
 	public Product() {
 	}
 
-	public Product(String productId, String productName, String peoductCategory, Integer productPrice) {
+	public Product(String productId, String productName, String peoductCategory, Integer productPrice,
+			String createdDate) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.productCategory = peoductCategory;
 		this.productPrice = productPrice;
+		this.createdDate = createdDate;
 	}
 
 	public String getProductId() {
@@ -55,12 +58,20 @@ public class Product {
 		this.productPrice = productPrice;
 	}
 
+	public String getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
+	}
+
 	// It is optional but its a good programming practice to have a toString() in
 	// our pojo/model class
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productName=" + productName + ", productCategory="
-				+ productCategory + ", productPrice=" + productPrice + "]";
+				+ productCategory + ", productPrice=" + productPrice + ", createdDate=" + createdDate + "]";
 	}
 
 }

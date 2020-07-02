@@ -5,13 +5,25 @@
    
 <struts>
 	<package name="productManagementApplication" extends="struts-default">
+		<interceptors>
+			<interceptor name="loginInterceptor" class="interceptors.LoginInterceptor"></interceptor>
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="loginStack"></default-interceptor-ref>
 		<action name="login" class="com.products.action.LoginAction">
 			<!-- type="redirect" is a way of mapping a result tag to another action in the xml -->
 			<result name="success" type="redirect">welcome</result>
 			<result name="input">/login.jsp</result>
 		</action>
+		<action name="logout" class="com.products.action.LogoutAction">
+			<result name="input">/login.jsp</result>			
+		</action>
 		<action name="welcome" class="com.products.action.WelcomeAction">
-			<result name="success">/welcome.jsp</result>			
+			<result name="success">/welcome.jsp</result>	
+			<result name="input">/login.jsp</result>		
 		</action>
 		<action name="addProduct" class="com.products.action.AddProductAction">
 			<result name="success" type="redirect">welcome</result>

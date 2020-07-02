@@ -7,7 +7,8 @@
 <title>Error</title>
 </head>
 <body>
-
+<!-- Adding Top Nav Bar -->
+<%@ include file="header.jsp" %>
 <h3>Encountered an error while adding new product</h3>
 
 </body>

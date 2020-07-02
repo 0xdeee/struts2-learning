@@ -3,6 +3,9 @@
  */
 package com.products.action;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.products.DAO.ProductManagementDAO;
 import com.products.model.Product;
@@ -73,8 +76,12 @@ public class AddProductAction extends ActionSupport{
 
 	@Override
 	public String execute() {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+		// we are popoulating the created date column with the current date. so we dont
+		// have to enter it manually and thus not included in addProduct.jsp
+		String createdDate = dateFormat.format(new Date());
 		int status = ProductManagementDAO
-				.addProduct(new Product(productId, productName, productCategory, productPrice));
+				.addProduct(new Product(productId, productName, productCategory, productPrice, createdDate));
 
 		if (status == 1) {
 			statusCode = SUCCESS;
