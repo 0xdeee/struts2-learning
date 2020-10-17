@@ -1,32 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
     <wb-module deploy-name="RegistrationApplication">
+                
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+                
         <dependent-module archiveName="commons-io-2.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Jars/struts-2.5.22/lib/commons-io-2.6.jar">
+                        
             <dependency-type>uses</dependency-type>
+                    
         </dependent-module>
+                
         <dependent-module archiveName="javassist-3.20.0-GA.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Jars/struts-2.5.22/lib/javassist-3.20.0-GA.jar">
+                        
             <dependency-type>uses</dependency-type>
+                    
         </dependent-module>
+                
         <dependent-module archiveName="log4j-api-2.12.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Jars/struts-2.5.22/lib/log4j-api-2.12.1.jar">
+                        
             <dependency-type>uses</dependency-type>
+                    
         </dependent-module>
+                
         <dependent-module archiveName="ognl-3.1.26.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Jars/struts-2.5.22/lib/ognl-3.1.26.jar">
+                        
             <dependency-type>uses</dependency-type>
+                    
         </dependent-module>
+                
         <dependent-module archiveName="commons-lang3-3.8.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Jars/struts-2.5.22/lib/commons-lang3-3.8.1.jar">
+                        
             <dependency-type>uses</dependency-type>
+                    
         </dependent-module>
+                
         <dependent-module archiveName="freemarker-2.3.28.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Jars/struts-2.5.22/lib/freemarker-2.3.28.jar">
+                        
             <dependency-type>uses</dependency-type>
+                    
         </dependent-module>
+                
         <dependent-module archiveName="struts2-core-2.5.22.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Jars/struts-2.5.22/lib/struts2-core-2.5.22.jar">
+                        
             <dependency-type>uses</dependency-type>
+                    
         </dependent-module>
+                
         <dependent-module archiveName="commons-fileupload-1.4.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Jars/struts-2.5.22/lib/commons-fileupload-1.4.jar">
+                        
+            <dependency-type>uses</dependency-type>
+                    
+        </dependent-module>
+        <dependent-module archiveName="javax.servlet-api-3.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Jars/javax.servlet-api-3.0.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+                
         <property name="context-root" value="RegistrationApplication"/>
+                
         <property name="java-output-path" value="/RegistrationApplication/build/classes"/>
+            
     </wb-module>
+    
 </project-modules>
